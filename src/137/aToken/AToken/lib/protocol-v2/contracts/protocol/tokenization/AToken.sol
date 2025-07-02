@@ -130,7 +130,7 @@ contract AToken is
     _burn(user, amountScaled);
 
     uint256 releaseAmount = amount > RELEASE_MARGIN ? amount - RELEASE_MARGIN : 0;
-    if (releaseAmount != 0) {
+    if(releaseAmount != 0) {
       IERC20(_underlyingAsset).safeTransfer(receiverOfUnderlying, releaseAmount);
     }
 
