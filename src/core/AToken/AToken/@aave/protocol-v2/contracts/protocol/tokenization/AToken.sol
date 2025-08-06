@@ -30,10 +30,13 @@ contract AToken is VersionedInitializable, IncentivizedERC20, IAToken {
   uint256 public constant ATOKEN_REVISION = 0x3;
   address public immutable UNDERLYING_ASSET_ADDRESS;
   address public immutable RESERVE_TREASURY_ADDRESS;
+  uint256 internal constant RELEASE_MARGIN = 10;
+
   ILendingPool public immutable POOL;
 
   /// @dev owner => next valid nonce to submit with permit()
   mapping(address => uint256) public _nonces;
+
 
   bytes32 public DOMAIN_SEPARATOR;
 
@@ -115,7 +118,10 @@ contract AToken is VersionedInitializable, IncentivizedERC20, IAToken {
     require(amountScaled != 0, Errors.CT_INVALID_BURN_AMOUNT);
     _burn(user, amountScaled);
 
-    IERC20(UNDERLYING_ASSET_ADDRESS).safeTransfer(receiverOfUnderlying, amount);
+    uint256 releaseAmount = amount > RELEASE_MARGIN ? amount - RELEASE_MARGIN : 0;
+    if(releaseAmount != 0) {
+      IERC20(UNDERLYING_ASSET_ADDRESS).safeTransfer(receiverOfUnderlying, releaseAmount);
+    }
 
     emit Transfer(user, address(0), amount);
     emit Burn(user, receiverOfUnderlying, amount, index);
