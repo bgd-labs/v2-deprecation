@@ -5,6 +5,8 @@ import {
   AaveV2EthereumAMM,
   AaveV2Polygon,
 } from '@bgd-labs/aave-address-book';
+import {getClient, getImplementationSlot} from '@bgd-labs/toolbox';
+import {getAddress, slice, Hex} from 'viem';
 
 function runCmd(cmd: string) {
   var resp = child_process.execSync(cmd);
@@ -37,7 +39,11 @@ const contracts = {
   Pool: 'POOL_IMPL',
 } as const;
 
-function diffPools() {
+function bytes32ToAddress(bytes32: Hex) {
+  return getAddress(slice(bytes32, 12, 32));
+}
+
+async function diffPools() {
   const contractKeys = Object.keys(contracts) as (keyof typeof contracts)[];
   for (let j = 0; j < contractKeys.length; j++) {
     const poolKeys = Object.keys(pools) as (keyof typeof pools)[];
@@ -58,6 +64,31 @@ function diffPools() {
       );
     }
   }
+
+  runCmd(
+    `cast source --chain-id 1 -d src/1/AToken ${bytes32ToAddress(
+      (await getImplementationSlot(
+        getClient(1, {providerConfig: {alchemyKey: process.env.ALCHEMY_API_KEY}}),
+        AaveV2Ethereum.ASSETS.WBTC.A_TOKEN
+      )) as Hex
+    )}`
+  );
+  runCmd(
+    `cast source --chain-id 137 -d src/137/AToken ${bytes32ToAddress(
+      (await getImplementationSlot(
+        getClient(137, {providerConfig: {alchemyKey: process.env.ALCHEMY_API_KEY}}),
+        AaveV2Polygon.ASSETS.WBTC.A_TOKEN
+      )) as Hex
+    )}`
+  );
+  runCmd(
+    `cast source --chain-id 43114 -d src/43114/AToken ${bytes32ToAddress(
+      (await getImplementationSlot(
+        getClient(43114, {providerConfig: {alchemyKey: process.env.ALCHEMY_API_KEY}}),
+        AaveV2Avalanche.ASSETS.WBTCe.A_TOKEN
+      )) as Hex
+    )}`
+  );
 }
 
 diffPools();
