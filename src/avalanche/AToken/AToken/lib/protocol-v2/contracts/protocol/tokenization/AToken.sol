@@ -31,6 +31,7 @@ contract AToken is
     keccak256('Permit(address owner,address spender,uint256 value,uint256 nonce,uint256 deadline)');
 
   uint256 public constant ATOKEN_REVISION = 0x3;
+  uint256 internal constant RELEASE_MARGIN = 10;
 
   /// @dev owner => next valid nonce to submit with permit()
   mapping(address => uint256) public _nonces;
@@ -127,7 +128,10 @@ contract AToken is
     require(amountScaled != 0, Errors.CT_INVALID_BURN_AMOUNT);
     _burn(user, amountScaled);
 
-    IERC20(_underlyingAsset).safeTransfer(receiverOfUnderlying, amount);
+    uint256 releaseAmount = amount > RELEASE_MARGIN ? amount - RELEASE_MARGIN : 0;
+    if(releaseAmount != 0) {
+      IERC20(_underlyingAsset).safeTransfer(receiverOfUnderlying, releaseAmount);
+    }
 
     emit Transfer(user, address(0), amount);
     emit Burn(user, receiverOfUnderlying, amount, index);

@@ -69,7 +69,7 @@ library DeployLib {
       }
     }
 
-    return address(new UpgradePayloadMainnet(manager, btcImpl));
+    return address(new UpgradePayloadAMM(manager, btcImpl));
   }
 
   function deployPolygon(Vm vm) internal returns (address) {
