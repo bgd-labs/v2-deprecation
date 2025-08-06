@@ -74,6 +74,14 @@ async function diffPools() {
     )}`
   );
   runCmd(
+    `cast source --chain-id 1 -d src/1amm/AToken ${bytes32ToAddress(
+      (await getImplementationSlot(
+        getClient(1, {providerConfig: {alchemyKey: process.env.ALCHEMY_API_KEY}}),
+        AaveV2EthereumAMM.ASSETS.WBTC.A_TOKEN
+      )) as Hex
+    )}`
+  );
+  runCmd(
     `cast source --chain-id 137 -d src/137/AToken ${bytes32ToAddress(
       (await getImplementationSlot(
         getClient(137, {providerConfig: {alchemyKey: process.env.ALCHEMY_API_KEY}}),
