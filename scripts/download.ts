@@ -19,7 +19,7 @@ function downloadPool(
   {
     CHAIN_ID,
     LENDING_POOL_COLLATERAL_MANAGER,
-  }: {CHAIN_ID: number; LENDING_POOL_COLLATERAL_MANAGER: string}
+  }: {CHAIN_ID: number; LENDING_POOL_COLLATERAL_MANAGER: string},
 ) {}
 
 // downloadPool('core', AaveV2Ethereum);
@@ -47,7 +47,7 @@ async function diffPools() {
   const contractKeys = Object.keys(contracts) as (keyof typeof contracts)[];
   for (let j = 0; j < contractKeys.length; j++) {
     const poolKeys = Object.keys(pools) as (keyof typeof pools)[];
-    for (let i = 1; i < poolKeys.length; i++) {
+    for (let i = 0; i < poolKeys.length; i++) {
       // execSync(
       //   `npx @bgd-labs/cli@0.0.47 codeDiff \
       //   --address1 ${pools[poolKeys[0]][contracts[contractKeys[j]]]} --chainId1 ${
@@ -58,44 +58,42 @@ async function diffPools() {
       //   } -o file`
       // );
       runCmd(
-        `cast source --chain-id ${pools[poolKeys[i]].CHAIN_ID} -d src/${
-          pools[poolKeys[i]].CHAIN_ID
-        }/${contractKeys[j]} ${pools[poolKeys[i]][contracts[contractKeys[j]]]}`
+        `cast source --chain-id ${pools[poolKeys[i]].CHAIN_ID} -d src/${poolKeys[i]}/${contractKeys[j]} ${pools[poolKeys[i]][contracts[contractKeys[j]]]}`,
       );
     }
   }
 
   runCmd(
-    `cast source --chain-id 1 -d src/1/AToken ${bytes32ToAddress(
+    `cast source --chain-id 1 -d src/core/AToken ${bytes32ToAddress(
       (await getImplementationSlot(
         getClient(1, {providerConfig: {alchemyKey: process.env.ALCHEMY_API_KEY}}),
-        AaveV2Ethereum.ASSETS.WBTC.A_TOKEN
-      )) as Hex
-    )}`
+        AaveV2Ethereum.ASSETS.WBTC.A_TOKEN,
+      )) as Hex,
+    )}`,
   );
   runCmd(
-    `cast source --chain-id 1 -d src/1amm/AToken ${bytes32ToAddress(
+    `cast source --chain-id 1 -d src/amm/AToken ${bytes32ToAddress(
       (await getImplementationSlot(
         getClient(1, {providerConfig: {alchemyKey: process.env.ALCHEMY_API_KEY}}),
-        AaveV2EthereumAMM.ASSETS.WBTC.A_TOKEN
-      )) as Hex
-    )}`
+        AaveV2EthereumAMM.ASSETS.WBTC.A_TOKEN,
+      )) as Hex,
+    )}`,
   );
   runCmd(
-    `cast source --chain-id 137 -d src/137/AToken ${bytes32ToAddress(
+    `cast source --chain-id 137 -d src/polygon/AToken ${bytes32ToAddress(
       (await getImplementationSlot(
         getClient(137, {providerConfig: {alchemyKey: process.env.ALCHEMY_API_KEY}}),
-        AaveV2Polygon.ASSETS.WBTC.A_TOKEN
-      )) as Hex
-    )}`
+        AaveV2Polygon.ASSETS.WBTC.A_TOKEN,
+      )) as Hex,
+    )}`,
   );
   runCmd(
-    `cast source --chain-id 43114 -d src/43114/AToken ${bytes32ToAddress(
+    `cast source --chain-id 43114 -d src/avalanche/AToken ${bytes32ToAddress(
       (await getImplementationSlot(
         getClient(43114, {providerConfig: {alchemyKey: process.env.ALCHEMY_API_KEY}}),
-        AaveV2Avalanche.ASSETS.WBTCe.A_TOKEN
-      )) as Hex
-    )}`
+        AaveV2Avalanche.ASSETS.WBTCe.A_TOKEN,
+      )) as Hex,
+    )}`,
   );
 }
 

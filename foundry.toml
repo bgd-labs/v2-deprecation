@@ -6,6 +6,9 @@ out = 'out'
 libs = ['lib']
 remappings = []
 fs_permissions = [{ access = "write", path = "./reports" }]
+optimizer = true
+optimizer_runs = 200
+ffi = true
 
 [rpc_endpoints]
 mainnet = "${RPC_MAINNET}"
