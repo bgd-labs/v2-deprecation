@@ -1,7 +1,7 @@
 {
   "chainId": 1,
   "poolConfig": {
-    "lendingPoolCollateralManager": "0x368e6441bB27159c6e8e6d3bbd9147BEcBA915E3",
+    "lendingPoolCollateralManager": "0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f",
     "oracle": "0xA50ba011c48153De246E5192C8f9258A2ba79Ca9",
     "pool": "0x7d2768dE32b0b80b7a3454c06BdAc94A69DDc7A9",
     "poolAddressesProvider": "0xB53C1a33016B2DC2fF3653530bfF1848a515c8c5",
@@ -299,7 +299,7 @@
     },
     "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599": {
       "aToken": "0x9ff58f4fFB29fA2266Ab25e75e2A8b3503311656",
-      "aTokenImpl": "0xC2fcab14Ec1F2dFA82a23C639c4770345085a50F",
+      "aTokenImpl": "0x2e234DAe75C793f67A35089C9d99245E1C58470b",
       "aTokenName": "Aave interest bearing WBTC",
       "aTokenSymbol": "aWBTC",
       "baseStableBorrowRate": "30000000000000000000000000",

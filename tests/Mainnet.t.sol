@@ -2,9 +2,12 @@
 pragma solidity ^0.8.0;
 
 import {ProtocolV2TestBase, ReserveConfig} from 'aave-helpers/src/ProtocolV2TestBase.sol';
+import {AaveV2Polygon} from "aave-address-book/AaveV2Polygon.sol";
+import {AaveV2Avalanche} from "aave-address-book/AaveV2Avalanche.sol";
 import {AaveV2Ethereum} from "aave-address-book/AaveV2Ethereum.sol";
+import {AaveV2EthereumAMM} from "aave-address-book/AaveV2EthereumAMM.sol";
 import {UpgradePayloadMainnet} from '../src/payloads/UpgradePayloadMainnet.sol';
-
+import {DeployLib} from '../scripts/Deploy.s.sol';
 
 contract DefaultTest is ProtocolV2TestBase {
   string public NETWORK;
@@ -23,7 +26,28 @@ contract DefaultTest is ProtocolV2TestBase {
 
 contract MainnetTest is DefaultTest("mainnet", 23081690) {
   function test_default() external {
-    UpgradePayloadMainnet payload = new UpgradePayloadMainnet();
-    defaultTest('core', AaveV2Ethereum.POOL, address(payload));
+    address payload = DeployLib.deployMainnet(vm);
+    defaultTest('core', AaveV2Ethereum.POOL, payload);
+  }
+}
+
+contract AMMTest is DefaultTest("mainnet", 23081690) {
+  function test_default() external {
+    address payload = DeployLib.deployAMM(vm);
+    defaultTest('amm', AaveV2EthereumAMM.POOL, payload);
+  }
+}
+
+contract PolygonTest is DefaultTest("polygon", 74869895) {
+  function test_default() external {
+    address payload = DeployLib.deployPolygon(vm);
+    defaultTest('polygon', AaveV2Polygon.POOL, payload);
+  }
+}
+
+contract AvalancheTest is DefaultTest("avalanche", 66652691) {
+  function test_default() external {
+    address payload = DeployLib.deployAvalanche(vm);
+    defaultTest('avalanche', AaveV2Avalanche.POOL, payload);
   }
 }

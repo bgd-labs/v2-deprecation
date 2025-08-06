@@ -1,7 +1,7 @@
 {
   "chainId": 137,
   "poolConfig": {
-    "lendingPoolCollateralManager": "0xAdDb96Fb6A795faf042DD25BD4710267C41D1F74",
+    "lendingPoolCollateralManager": "0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f",
     "oracle": "0x0229F777B0fAb107F9591a41d5F02E4e98dB6f2d",
     "pool": "0x8dFf5E27EA6b7AC08EbFdf9eB090F32ee9a30fcf",
     "poolAddressesProvider": "0xd05e3E715d945B59290df0ae8eF85c1BdB684744",
@@ -109,7 +109,7 @@
     },
     "0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6": {
       "aToken": "0x5c2ed810328349100A66B82b78a1791B101C9D61",
-      "aTokenImpl": "0x80f2c02224a2E548FC67c0bF705eBFA825dd5439",
+      "aTokenImpl": "0x2e234DAe75C793f67A35089C9d99245E1C58470b",
       "aTokenName": "Aave Matic Market WBTC",
       "aTokenSymbol": "amWBTC",
       "baseStableBorrowRate": "30000000000000000000000000",
