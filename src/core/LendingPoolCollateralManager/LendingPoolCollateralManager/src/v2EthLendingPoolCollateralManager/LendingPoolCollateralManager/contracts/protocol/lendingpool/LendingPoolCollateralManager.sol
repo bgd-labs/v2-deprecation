@@ -36,7 +36,7 @@ contract LendingPoolCollateralManager is
   using WadRayMath for uint256;
   using PercentageMath for uint256;
 
-  uint256 internal constant LIQUIDATION_CLOSE_FACTOR_PERCENT = 5000;
+  uint256 internal constant LIQUIDATION_CLOSE_FACTOR_PERCENT = 100_00;
   ILiquidationsGraceSentinel public immutable override LIQUIDATIONS_GRACE_SENTINEL;
 
   struct LiquidationCallLocalVars {
@@ -134,9 +134,7 @@ contract LendingPoolCollateralManager is
 
     vars.userCollateralBalance = vars.collateralAtoken.balanceOf(user);
 
-    vars.maxLiquidatableDebt = vars.userStableDebt.add(vars.userVariableDebt).percentMul(
-      LIQUIDATION_CLOSE_FACTOR_PERCENT
-    );
+    vars.maxLiquidatableDebt = vars.userStableDebt.add(vars.userVariableDebt);
 
     vars.actualDebtToLiquidate = debtToCover > vars.maxLiquidatableDebt
       ? vars.maxLiquidatableDebt
