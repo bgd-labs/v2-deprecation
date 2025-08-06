@@ -1,0 +1,60 @@
+Index: settings
+===================================================================
+--- settings
++++ settings
+@@ -1,24 +1,26 @@
+ {
+   "remappings": [
+-    "@aave/core-v3/=lib/aave-helpers/lib/aave-address-book/lib/aave-v3-core/",
+-    "@aave/periphery-v3/=lib/aave-helpers/lib/aave-address-book/lib/aave-v3-periphery/",
+-    "aave-address-book/=lib/aave-helpers/lib/aave-address-book/src/",
+-    "aave-helpers/=lib/aave-helpers/src/",
+-    "aave-v3-core/=lib/aave-helpers/lib/aave-address-book/lib/aave-v3-core/",
+-    "aave-v3-periphery/=lib/aave-helpers/lib/aave-address-book/lib/aave-v3-periphery/",
+-    "ds-test/=lib/aave-helpers/lib/forge-std/lib/ds-test/src/",
+-    "forge-std/=lib/aave-helpers/lib/forge-std/src/",
+-    "governance-crosschain-bridges/=lib/aave-helpers/lib/governance-crosschain-bridges/",
+-    "solidity-utils/=lib/aave-helpers/lib/solidity-utils/src/"
++    "solidity-utils/=lib/solidity-utils/src/",
++    "aave-address-bool/=lib/aave-address-bool/",
++    "rescue-mission-phase-1/=lib/rescue-mission-phase-1/src/",
++    "@aave/core-v3/=lib/aave-address-book/lib/aave-v3-core/",
++    "@aave/periphery-v3/=lib/aave-address-book/lib/aave-v3-periphery/",
++    "aave-address-book/=lib/aave-address-book/src/",
++    "aave-autonomous-proposal/=lib/rescue-mission-phase-1/lib/aave-autonomous-proposal/",
++    "aave-helpers/=lib/rescue-mission-phase-1/lib/aave-helpers/src/",
++    "aave-v3-core/=lib/aave-address-book/lib/aave-v3-core/",
++    "aave-v3-periphery/=lib/aave-address-book/lib/aave-v3-periphery/",
++    "ds-test/=lib/forge-std/lib/ds-test/src/",
++    "forge-std/=lib/forge-std/src/"
+   ],
+   "optimizer": {
+     "enabled": true,
+     "runs": 200
+   },
+   "metadata": {
+     "useLiteralContent": false,
+-    "bytecodeHash": "none"
++    "bytecodeHash": "ipfs"
+   },
+   "outputSelection": {
+     "*": {
+       "*": [
+@@ -32,12 +34,12 @@
+     }
+   },
+   "evmVersion": "istanbul",
+   "libraries": {
+-    "src/contracts/protocol/libraries/logic/ReserveLogic.sol": {
+-      "ReserveLogic": "0xe58575ba47a348e3c2f9b7ec3eccfbb189ccc6ec"
++    "src/contracts/v2AmmPool/LendingPool/contracts/protocol/libraries/logic/ReserveLogic.sol": {
++      "ReserveLogic": "0x97685795b76935eeafdc9cd67f04f57d869d6ca5"
+     },
+-    "src/contracts/protocol/libraries/logic/ValidationLogic.sol": {
+-      "ValidationLogic": "0x2fba77a9dD1CcA8c3B54Ce20191057EAa08402D6"
++    "src/contracts/v2AmmPool/LendingPool/contracts/protocol/libraries/logic/ValidationLogic.sol": {
++      "ValidationLogic": "0x69caeda663b77177d34072398b4365c09195c318"
+     }
+   }
+ }
+\ No newline at end of file

@@ -1,0 +1,242 @@
+===================================================================
+--- src/contracts/protocol/lendingpool/LendingPool.sol
++++ contracts/v2AvaPool/LendingPool/contracts/protocol/lendingpool/LendingPool.sol
+@@ -52,13 +52,9 @@
+     using WadRayMath for uint256;
+     using PercentageMath for uint256;
+     using SafeERC20 for IERC20;
+ 
+-    //main configuration parameters
+-    uint256 public constant MAX_STABLE_RATE_BORROW_SIZE_PERCENT = 2500;
+-    uint256 public constant FLASHLOAN_PREMIUM_TOTAL = 9;
+-    uint256 public constant MAX_NUMBER_RESERVES = 128;
+-    uint256 public constant LENDINGPOOL_REVISION = 0x5;
++    uint256 public constant LENDINGPOOL_REVISION = 0x3;
+ 
+     modifier whenNotPaused() {
+         _whenNotPaused();
+         _;
+@@ -68,17 +64,17 @@
+         _onlyLendingPoolConfigurator();
+         _;
+     }
+ 
++    function _whenNotPaused() internal view {
++        require(!_paused, Errors.LP_IS_PAUSED);
++    }
++
+     modifier onlyPoolAdmin() {
+         _onlyLendingPoolAdmin();
+         _;
+     }
+ 
+-    function _whenNotPaused() internal view {
+-        require(!_paused, Errors.LP_IS_PAUSED);
+-    }
+-
+     function _onlyLendingPoolConfigurator() internal view {
+         require(
+             _addressesProvider.getLendingPoolConfigurator() == msg.sender,
+             Errors.LP_CALLER_NOT_LENDING_POOL_CONFIGURATOR
+@@ -106,8 +102,11 @@
+     function initialize(
+         ILendingPoolAddressesProvider provider
+     ) public initializer {
+         _addressesProvider = provider;
++        _maxStableRateBorrowSizePercent = 2500;
++        _flashLoanPremiumTotal = 9;
++        _maxNumberOfReserves = 128;
+     }
+ 
+     /**
+      * @dev Deposits an `amount` of underlying asset into the reserve, receiving in return overlying aTokens.
+@@ -318,50 +317,16 @@
+         }
+ 
+         IERC20(asset).safeTransferFrom(msg.sender, aToken, paybackAmount);
+ 
++        IAToken(aToken).handleRepayment(msg.sender, paybackAmount);
++
+         emit Repay(asset, onBehalfOf, msg.sender, paybackAmount);
+ 
+         return paybackAmount;
+     }
+ 
+     /**
+-     * @notice Allows a borrower to swap his debt between stable and variable mode,
+-     * @dev introduce in a flavor stable rate deprecation
+-     * @param asset The address of the underlying asset borrowed
+-     * @param user The address of the user to be swapped
+-     */
+-    function swapToVariable(
+-        address asset,
+-        address user
+-    ) external override whenNotPaused {
+-        DataTypes.ReserveData storage reserve = _reserves[asset];
+-
+-        (uint256 stableDebt, ) = Helpers.getUserCurrentDebt(user, reserve);
+-
+-        ValidationLogic.validateSwapRateMode(
+-            reserve,
+-            _usersConfig[user],
+-            stableDebt,
+-            DataTypes.InterestRateMode.STABLE
+-        );
+-
+-        reserve.updateState();
+-
+-        IStableDebtToken(reserve.stableDebtTokenAddress).burn(user, stableDebt);
+-        IVariableDebtToken(reserve.variableDebtTokenAddress).mint(
+-            user,
+-            user,
+-            stableDebt,
+-            reserve.variableBorrowIndex
+-        );
+-
+-        reserve.updateInterestRates(asset, reserve.aTokenAddress, 0, 0);
+-
+-        emit Swap(asset, user, 1);
+-    }
+-
+-    /**
+      * @dev Allows a borrower to swap his debt between stable and variable mode, or viceversa
+      * @param asset The address of the underlying asset borrowed
+      * @param rateMode The rate mode that the user wants to swap to
+      **/
+@@ -370,9 +335,9 @@
+         uint256 rateMode
+     ) external override whenNotPaused {
+         DataTypes.ReserveData storage reserve = _reserves[asset];
+ 
+-        (uint256 stableDebt, ) = Helpers.getUserCurrentDebt(
++        (uint256 stableDebt, uint256 variableDebt) = Helpers.getUserCurrentDebt(
+             msg.sender,
+             reserve
+         );
+ 
+@@ -382,23 +347,38 @@
+         ValidationLogic.validateSwapRateMode(
+             reserve,
+             _usersConfig[msg.sender],
+             stableDebt,
++            variableDebt,
+             interestRateMode
+         );
+ 
+         reserve.updateState();
+ 
+-        IStableDebtToken(reserve.stableDebtTokenAddress).burn(
+-            msg.sender,
+-            stableDebt
+-        );
+-        IVariableDebtToken(reserve.variableDebtTokenAddress).mint(
+-            msg.sender,
+-            msg.sender,
+-            stableDebt,
+-            reserve.variableBorrowIndex
+-        );
++        if (interestRateMode == DataTypes.InterestRateMode.STABLE) {
++            IStableDebtToken(reserve.stableDebtTokenAddress).burn(
++                msg.sender,
++                stableDebt
++            );
++            IVariableDebtToken(reserve.variableDebtTokenAddress).mint(
++                msg.sender,
++                msg.sender,
++                stableDebt,
++                reserve.variableBorrowIndex
++            );
++        } else {
++            IVariableDebtToken(reserve.variableDebtTokenAddress).burn(
++                msg.sender,
++                variableDebt,
++                reserve.variableBorrowIndex
++            );
++            IStableDebtToken(reserve.stableDebtTokenAddress).mint(
++                msg.sender,
++                msg.sender,
++                variableDebt,
++                reserve.currentStableBorrowRate
++            );
++        }
+ 
+         reserve.updateInterestRates(asset, reserve.aTokenAddress, 0, 0);
+ 
+         emit Swap(asset, msg.sender, rateMode);
+@@ -513,8 +493,9 @@
+                 debtToCover,
+                 receiveAToken
+             )
+         );
++
+         require(success, Errors.LP_LIQUIDATION_CALL_FAILED);
+ 
+         (uint256 returnCode, string memory returnMessage) = abi.decode(
+             result,
+@@ -573,9 +554,9 @@
+ 
+         for (vars.i = 0; vars.i < assets.length; vars.i++) {
+             aTokenAddresses[vars.i] = _reserves[assets[vars.i]].aTokenAddress;
+ 
+-            premiums[vars.i] = amounts[vars.i].mul(FLASHLOAN_PREMIUM_TOTAL).div(
++            premiums[vars.i] = amounts[vars.i].mul(_flashLoanPremiumTotal).div(
+                 10000
+             );
+ 
+             IAToken(aTokenAddresses[vars.i]).transferUnderlyingTo(
+@@ -810,8 +791,33 @@
+         return _addressesProvider;
+     }
+ 
+     /**
++     * @dev Returns the percentage of available liquidity that can be borrowed at once at stable rate
++     */
++    function MAX_STABLE_RATE_BORROW_SIZE_PERCENT()
++        public
++        view
++        returns (uint256)
++    {
++        return _maxStableRateBorrowSizePercent;
++    }
++
++    /**
++     * @dev Returns the fee on flash loans
++     */
++    function FLASHLOAN_PREMIUM_TOTAL() public view returns (uint256) {
++        return _flashLoanPremiumTotal;
++    }
++
++    /**
++     * @dev Returns the maximum number of reserves supported to be listed in this LendingPool
++     */
++    function MAX_NUMBER_RESERVES() public view returns (uint256) {
++        return _maxNumberOfReserves;
++    }
++
++    /**
+      * @dev Validates and finalizes an aToken transfer
+      * - Only callable by the overlying aToken of the `asset`
+      * @param asset The address of the underlying asset of the aToken
+      * @param from The user from which the aTokens are transferred
+@@ -959,9 +965,9 @@
+             vars.onBehalfOf,
+             vars.amount,
+             amountInETH,
+             vars.interestRateMode,
+-            MAX_STABLE_RATE_BORROW_SIZE_PERCENT,
++            _maxStableRateBorrowSizePercent,
+             _reserves,
+             userConfig,
+             _reservesList,
+             _reservesCount,
+@@ -1032,9 +1038,9 @@
+     function _addReserveToList(address asset) internal {
+         uint256 reservesCount = _reservesCount;
+ 
+         require(
+-            reservesCount < MAX_NUMBER_RESERVES,
++            reservesCount < _maxNumberOfReserves,
+             Errors.LP_NO_MORE_RESERVES_ALLOWED
+         );
+ 
+         bool reserveAlreadyAdded = _reserves[asset].id != 0 ||
