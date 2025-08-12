@@ -42,7 +42,7 @@ abstract contract DefaultTest is ProtocolV2TestBase {
 
   function test_default() external {
     address payload = _deployPayload();
-    defaultTest(string.concat(NETWORK, NETWORK_SUB_NAME), pool, payload);
+    defaultTest(string.concat(NETWORK, '_', NETWORK_SUB_NAME), pool, payload);
   }
 
   function test_close_factor() external {
