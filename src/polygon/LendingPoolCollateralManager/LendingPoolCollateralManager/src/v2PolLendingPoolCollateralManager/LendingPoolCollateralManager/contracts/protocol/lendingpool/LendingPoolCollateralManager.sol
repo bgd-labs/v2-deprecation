@@ -36,7 +36,6 @@ contract LendingPoolCollateralManager is
   using WadRayMath for uint256;
   using PercentageMath for uint256;
 
-  uint256 internal constant LIQUIDATION_CLOSE_FACTOR_PERCENT = 100_00;
   ILiquidationsGraceSentinel public immutable override LIQUIDATIONS_GRACE_SENTINEL;
 
   struct LiquidationCallLocalVars {
