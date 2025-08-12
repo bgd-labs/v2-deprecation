@@ -6,7 +6,7 @@ import {AaveV2EthereumAMM, AaveV2EthereumAMMAssets} from 'aave-address-book/Aave
 import {AaveV2Polygon, AaveV2PolygonAssets} from 'aave-address-book/AaveV2Polygon.sol';
 import {AaveV2Avalanche, AaveV2AvalancheAssets} from 'aave-address-book/AaveV2Avalanche.sol';
 import {Vm} from 'forge-std/Vm.sol';
-import {Script, EthereumScript} from 'solidity-utils/contracts/utils/ScriptUtils.sol';
+import {Script, EthereumScript, PolygonScript, AvalancheScript} from 'solidity-utils/contracts/utils/ScriptUtils.sol';
 import {IERC20Metadata} from 'openzeppelin-contracts/contracts/interfaces/IERC20Metadata.sol';
 import {UpgradePayloadMainnet} from '../src/payloads/UpgradePayloadMainnet.sol';
 import {UpgradePayloadAMM} from '../src/payloads/UpgradePayloadAMM.sol';
@@ -18,7 +18,7 @@ interface ICollateralManager {
 }
 
 library DeployLib {
-  function deployMainnet(Vm vm) internal returns (address) {
+  function deployMainnetCore(Vm vm) internal returns (address) {
     address manager;
     {
       bytes memory args = abi.encode(
@@ -57,8 +57,8 @@ library DeployLib {
     }
 
     (bool success, ) = btcImpl.call(
-      abi.encodeWithSelector(
-        0x3118724e,
+      abi.encodeWithSignature(
+        'initialize(uint8,string,string)',
         0, // underlyingAssetDecimals
         'ATOKEN_IMPL', // tokenName
         'ATOKEN_IMPL' // tokenSymbol
@@ -69,7 +69,7 @@ library DeployLib {
     return address(new UpgradePayloadMainnet(manager, btcImpl));
   }
 
-  function deployAMM(Vm vm) internal returns (address) {
+  function deployMainnetAMM(Vm vm) internal returns (address) {
     address manager;
     {
       bytes memory args = abi.encode(
@@ -103,8 +103,8 @@ library DeployLib {
     }
 
     (bool success, ) = btcImpl.call(
-      abi.encodeWithSelector(
-        0x183fb413,
+      abi.encodeWithSignature(
+        'initialize(address,address,address,address,uint8,string,string,bytes)',
         AaveV2EthereumAMM.POOL, // pool
         AaveV2EthereumAMM.COLLECTOR, // treasury
         address(0), // underlyingAsset
@@ -156,8 +156,8 @@ library DeployLib {
     }
 
     (bool success, ) = btcImpl.call(
-      abi.encodeWithSelector(
-        0x183fb413,
+      abi.encodeWithSignature(
+        'initialize(address,address,address,address,uint8,string,string,bytes)',
         AaveV2Polygon.POOL, // pool
         AaveV2Polygon.COLLECTOR, // treasury
         address(0), // underlyingAsset
@@ -209,8 +209,8 @@ library DeployLib {
     }
 
     (bool success, ) = btcImpl.call(
-      abi.encodeWithSelector(
-        0x183fb413,
+      abi.encodeWithSignature(
+        'initialize(address,address,address,address,uint8,string,string,bytes)',
         AaveV2Avalanche.POOL, // pool
         AaveV2Avalanche.COLLECTOR, // treasury
         address(0), // underlyingAsset
@@ -229,6 +229,24 @@ library DeployLib {
 
 contract DeployMainnet is EthereumScript {
   function run() external broadcast {
-    DeployLib.deployMainnet(vm);
+    DeployLib.deployMainnetCore(vm);
+  }
+}
+
+contract DeployMainnetAmm is EthereumScript {
+  function run() external broadcast {
+    DeployLib.deployMainnetAMM(vm);
+  }
+}
+
+contract DeployPolygon is PolygonScript {
+  function run() external broadcast {
+    DeployLib.deployPolygon(vm);
+  }
+}
+
+contract DeployAvalanche is AvalancheScript {
+  function run() external broadcast {
+    DeployLib.deployAvalanche(vm);
   }
 }

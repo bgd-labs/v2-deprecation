@@ -14,6 +14,6 @@ contract MainnetAmmTest is DefaultTest('mainnet', 'amm', 23118249) {
   }
 
   function _deployPayload() internal override returns (address) {
-    return DeployLib.deployAMM(vm);
+    return DeployLib.deployMainnetAMM(vm);
   }
 }

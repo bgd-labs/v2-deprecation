@@ -14,6 +14,6 @@ contract MainnetCoreTest is DefaultTest('mainnet', 'core', 23118249) {
   }
 
   function _deployPayload() internal override returns (address) {
-    return DeployLib.deployMainnet(vm);
+    return DeployLib.deployMainnetCore(vm);
   }
 }
