@@ -227,7 +227,7 @@ library DeployLib {
   }
 }
 
-contract DeployMainnet is EthereumScript {
+contract DeployMainnetCore is EthereumScript {
   function run() external broadcast {
     DeployLib.deployMainnetCore(vm);
   }
