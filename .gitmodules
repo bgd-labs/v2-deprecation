@@ -4,3 +4,4 @@
 [submodule "lib/aave-helpers"]
 	path = lib/aave-helpers
 	url = https://github.com/bgd-labs/aave-helpers
+  branch = fix/v2-enabling-at-least-one-reserve-for-e2e
