@@ -9,6 +9,7 @@ fs_permissions = [{ access = "write", path = "./reports" }]
 optimizer = true
 optimizer_runs = 200
 ffi = true
+bytecode_hash = 'none'
 
 [rpc_endpoints]
 mainnet = "${RPC_MAINNET}"

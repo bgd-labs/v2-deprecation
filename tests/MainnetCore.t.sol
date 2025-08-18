@@ -5,8 +5,9 @@ import {AaveV2Ethereum, AaveV2EthereumAssets} from 'aave-address-book/AaveV2Ethe
 import {DeployLib} from '../scripts/Deploy.s.sol';
 
 import {DefaultTest} from './DefaultTest.t.sol';
+import {Deployments} from '../src/Deployments.sol';
 
-contract MainnetCoreTest is DefaultTest('mainnet', 'core', 23118249) {
+contract MainnetCoreTest is DefaultTest('mainnet', 'core', 23166833) {
   constructor() {
     poolAddressesProvider = AaveV2Ethereum.POOL_ADDRESSES_PROVIDER;
     supplyAsset = AaveV2EthereumAssets.DAI_UNDERLYING;
@@ -14,6 +15,6 @@ contract MainnetCoreTest is DefaultTest('mainnet', 'core', 23118249) {
   }
 
   function _deployPayload() internal override returns (address) {
-    return DeployLib.deployMainnetCore(vm);
+    return Deployments.CORE;
   }
 }

@@ -5,8 +5,9 @@ import {AaveV2EthereumAMM, AaveV2EthereumAMMAssets} from 'aave-address-book/Aave
 import {DeployLib} from '../scripts/Deploy.s.sol';
 
 import {DefaultTest} from './DefaultTest.t.sol';
+import {Deployments} from '../src/Deployments.sol';
 
-contract MainnetAmmTest is DefaultTest('mainnet', 'amm', 23118249) {
+contract MainnetAmmTest is DefaultTest('mainnet', 'amm', 23166833) {
   constructor() {
     poolAddressesProvider = AaveV2EthereumAMM.POOL_ADDRESSES_PROVIDER;
     supplyAsset = AaveV2EthereumAMMAssets.USDT_UNDERLYING;
@@ -14,6 +15,6 @@ contract MainnetAmmTest is DefaultTest('mainnet', 'amm', 23118249) {
   }
 
   function _deployPayload() internal override returns (address) {
-    return DeployLib.deployMainnetAMM(vm);
+    return Deployments.AMM;
   }
 }

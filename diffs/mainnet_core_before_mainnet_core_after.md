@@ -6,7 +6,7 @@
 
 | description | value before | value after |
 | --- | --- | --- |
-| aTokenImpl | [0xC2fcab14Ec1F2dFA82a23C639c4770345085a50F](https://etherscan.io/address/0xC2fcab14Ec1F2dFA82a23C639c4770345085a50F) | [0x2e234DAe75C793f67A35089C9d99245E1C58470b](https://etherscan.io/address/0x2e234DAe75C793f67A35089C9d99245E1C58470b) |
+| aTokenImpl | [0xC2fcab14Ec1F2dFA82a23C639c4770345085a50F](https://etherscan.io/address/0xC2fcab14Ec1F2dFA82a23C639c4770345085a50F) | [0xA33eCc2125f6FD0b900945b149176D46f0474Ac4](https://etherscan.io/address/0xA33eCc2125f6FD0b900945b149176D46f0474Ac4) |
 | aTokenName | Aave interest bearing WBTC | ATOKEN_IMPL |
 | aTokenSymbol | aWBTC | ATOKEN_IMPL |
 
@@ -18,14 +18,14 @@
   "poolConfig": {
     "lendingPoolCollateralManager": {
       "from": "0x368e6441bB27159c6e8e6d3bbd9147BEcBA915E3",
-      "to": "0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f"
+      "to": "0xcc9632725266473ab5d42320E8Ae00437A1df3bB"
     }
   },
   "reserves": {
     "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599": {
       "aTokenImpl": {
         "from": "0xC2fcab14Ec1F2dFA82a23C639c4770345085a50F",
-        "to": "0x2e234DAe75C793f67A35089C9d99245E1C58470b"
+        "to": "0xA33eCc2125f6FD0b900945b149176D46f0474Ac4"
       },
       "aTokenName": {
         "from": "Aave interest bearing WBTC",
