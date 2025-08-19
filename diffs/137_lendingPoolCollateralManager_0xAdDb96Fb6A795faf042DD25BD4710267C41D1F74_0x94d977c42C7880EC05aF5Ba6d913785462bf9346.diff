@@ -1,0 +1,22 @@
+diff --git a/tmp/137_0xAdDb96Fb6A795faf042DD25BD4710267C41D1F74_flat/LendingPoolCollateralManager.sol b/tmp/137_0x94d977c42C7880EC05aF5Ba6d913785462bf9346_flat/LendingPoolCollateralManager.sol
+index f47e37a..d9ea585 100644
+--- a/tmp/137_0xAdDb96Fb6A795faf042DD25BD4710267C41D1F74_flat/LendingPoolCollateralManager.sol
++++ b/tmp/137_0x94d977c42C7880EC05aF5Ba6d913785462bf9346_flat/LendingPoolCollateralManager.sol
+@@ -36,7 +36,6 @@ contract LendingPoolCollateralManager is ILendingPoolCollateralManager, Versione
+     using WadRayMath for uint256;
+     using PercentageMath for uint256;
+ 
+-    uint256 internal constant LIQUIDATION_CLOSE_FACTOR_PERCENT = 5000;
+     ILiquidationsGraceSentinel public immutable override LIQUIDATIONS_GRACE_SENTINEL;
+ 
+     struct LiquidationCallLocalVars {
+@@ -125,8 +124,7 @@ contract LendingPoolCollateralManager is ILendingPoolCollateralManager, Versione
+ 
+         vars.userCollateralBalance = vars.collateralAtoken.balanceOf(user);
+ 
+-        vars.maxLiquidatableDebt =
+-            vars.userStableDebt.add(vars.userVariableDebt).percentMul(LIQUIDATION_CLOSE_FACTOR_PERCENT);
++        vars.maxLiquidatableDebt = vars.userStableDebt.add(vars.userVariableDebt);
+ 
+         vars.actualDebtToLiquidate = debtToCover > vars.maxLiquidatableDebt ? vars.maxLiquidatableDebt : debtToCover;
+ 
