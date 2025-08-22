@@ -1,7 +1,7 @@
 {
   "chainId": 1,
   "poolConfig": {
-    "lendingPoolCollateralManager": "0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f",
+    "lendingPoolCollateralManager": "0xcc9632725266473ab5d42320E8Ae00437A1df3bB",
     "oracle": "0xA50ba011c48153De246E5192C8f9258A2ba79Ca9",
     "pool": "0x7d2768dE32b0b80b7a3454c06BdAc94A69DDc7A9",
     "poolAddressesProvider": "0xB53C1a33016B2DC2fF3653530bfF1848a515c8c5",
@@ -9,6 +9,80 @@
     "poolConfiguratorImpl": "0x246ca67522dF5895cD6cf8807Ec161954ea1bA61",
     "poolImpl": "0x02D84abD89Ee9DB409572f19B6e1596c301F3c81",
     "protocolDataProvider": "0x057835Ad21a177dbdd3090bB1CAE03EaCF78Fc6d"
+  },
+  "raw": {
+    "0x9ff58f4ffb29fa2266ab25e75e2a8b3503311656": {
+      "label": null,
+      "contract": null,
+      "balanceDiff": null,
+      "nonceDiff": null,
+      "stateDiff": {
+        "0x0000000000000000000000000000000000000000000000000000000000000000": {
+          "previousValue": "0x0000000000000000000000000000000000000000000000000000000000000002",
+          "newValue": "0x0000000000000000000000000000000000000000000000000000000000000003"
+        },
+        "0x0000000000000000000000000000000000000000000000000000000000000001": {
+          "previousValue": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "newValue": "0x0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "0x0000000000000000000000000000000000000000000000000000000000000037": {
+          "previousValue": "0x4161766520696e7465726573742062656172696e672057425443000000000034",
+          "newValue": "0x41544f4b454e5f494d504c000000000000000000000000000000000000000016"
+        },
+        "0x0000000000000000000000000000000000000000000000000000000000000038": {
+          "previousValue": "0x615742544300000000000000000000000000000000000000000000000000000a",
+          "newValue": "0x41544f4b454e5f494d504c000000000000000000000000000000000000000016"
+        },
+        "0x0000000000000000000000000000000000000000000000000000000000000039": {
+          "previousValue": "0x0000000000000000000000000000000000000000000000000000000000000008",
+          "newValue": "0x0000000000000000000000000000000000000000000000000000000000000008"
+        },
+        "0x000000000000000000000000000000000000000000000000000000000000003b": {
+          "previousValue": "0x0d89fcdd1f73494c0c9b12a97ab3f8def4cf0c9561300bbe79086cdd75514831",
+          "newValue": "0x2b79a3fd4103e532ba661f52e3b5590c8e944d650d1e75d11ea4b927fdbf4457"
+        },
+        "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc": {
+          "previousValue": "0x000000000000000000000000c2fcab14ec1f2dfa82a23c639c4770345085a50f",
+          "newValue": "0x000000000000000000000000a33ecc2125f6fd0b900945b149176d46f0474ac4"
+        },
+        "0x38395c5dceade9603479b177b68959049485df8aa97b39f3533039af5f456199": {
+          "previousValue": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "newValue": "0x0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "0x42a7b7dd785cd69714a189dffb3fd7d7174edc9ece837694ce50f7078f7c31ae": {
+          "previousValue": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "newValue": "0x0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      }
+    },
+    "0xb53c1a33016b2dc2ff3653530bff1848a515c8c5": {
+      "label": null,
+      "contract": null,
+      "balanceDiff": null,
+      "nonceDiff": null,
+      "stateDiff": {
+        "0x65e3f3080e9127c1765503a54b8dbb495249e66169f096dfc87ee63bed17e22c": {
+          "previousValue": "0x000000000000000000000000368e6441bb27159c6e8e6d3bbd9147becba915e3",
+          "newValue": "0x000000000000000000000000cc9632725266473ab5d42320e8ae00437a1df3bb"
+        }
+      }
+    },
+    "0xdabad81af85554e9ae636395611c58f7ec1aaec5": {
+      "label": null,
+      "contract": null,
+      "balanceDiff": null,
+      "nonceDiff": null,
+      "stateDiff": {
+        "0x6090624016facd16d5b0ac903a50b2dc35f4004f6a8c25246e2dddee13b01a36": {
+          "previousValue": "0x0068a2e7f2000000000002000000000000000000000000000000000000000000",
+          "newValue": "0x0068a2e7f2000000000003000000000000000000000000000000000000000000"
+        },
+        "0x6090624016facd16d5b0ac903a50b2dc35f4004f6a8c25246e2dddee13b01a37": {
+          "previousValue": "0x000000000000000000093a8000000000000068d10c7300000000000000000000",
+          "newValue": "0x000000000000000000093a8000000000000068d10c7300000000000068a2e7f3"
+        }
+      }
+    }
   },
   "reserves": {
     "0x0000000000085d4780B73119b644AE5ecd22b376": {
@@ -28,7 +102,7 @@
       "oracle": "0x34A99cE5B513Baa1e27af7eED8E9E190e0F92ce1",
       "oracleDecimals": 18,
       "oracleDescription": "Capped TUSD / USD / ETH",
-      "oracleLatestAnswer": 233335584165860,
+      "oracleLatestAnswer": 232943214568502,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0x7f38d60D94652072b2C44a18c0e14A481EC3C0dd",
@@ -60,7 +134,7 @@
       "oracle": "0x4ad7B025127e89263242aB68F0f9c4E5C033B489",
       "oracleDecimals": 18,
       "oracleDescription": "RAI / ETH",
-      "oracleLatestAnswer": 1108285485408561,
+      "oracleLatestAnswer": 1123937018752989,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0x9C72B8476C33AE214ee3e8C20F0bc28496a62032",
@@ -90,7 +164,7 @@
       "liquidationThreshold": 0,
       "ltv": 0,
       "oracle": "0xEc6f4Cd64d28Ef32507e2dc399948aAe9Bbedd7e",
-      "oracleLatestAnswer": 233812243157250,
+      "oracleLatestAnswer": 233387628957687,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0xf8aC64ec6Ff8E0028b37EB89772d21865321bCe0",
@@ -122,7 +196,7 @@
       "oracle": "0x0d16d4528239e9ee52fa531af613AcdB23D88c94",
       "oracleDecimals": 18,
       "oracleDescription": "BAT / ETH",
-      "oracleLatestAnswer": 35592607396410,
+      "oracleLatestAnswer": 35798220113387,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0x277f8676FAcf4dAA5a6EA38ba511B7F65AA02f9F",
@@ -154,7 +228,7 @@
       "oracle": "0x82A44D92D6c329826dc557c5E1Be6ebeC5D5FeB9",
       "oracleDecimals": 18,
       "oracleDescription": "MANA / ETH",
-      "oracleLatestAnswer": 70279059757526,
+      "oracleLatestAnswer": 66622732592639,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0xD86C74eA2224f4B8591560652b50035E4e5c0a3b",
@@ -186,7 +260,7 @@
       "oracle": "0x7c5d4F8345e66f68099581Db340cd65B078C41f4",
       "oracleDecimals": 18,
       "oracleDescription": "YFI / ETH",
-      "oracleLatestAnswer": 1350873000000000000,
+      "oracleLatestAnswer": 1276991432517012000,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0xca823F78C2Dd38993284bb42Ba9b14152082F7BD",
@@ -218,7 +292,7 @@
       "oracle": "0x72AFAECF99C9d9C8215fF44C77B94B99C28741e8",
       "oracleDecimals": 18,
       "oracleDescription": "1INCH / ETH",
-      "oracleLatestAnswer": 63925535956074,
+      "oracleLatestAnswer": 57357845913780,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0x1278d6ED804d59d2d18a5Aa5638DfD591A79aF0a",
@@ -250,7 +324,7 @@
       "oracle": "0x2fe9EcF3024B5A63f50Ec0eFC53b8fF2C09F2E93",
       "oracleDecimals": 18,
       "oracleDescription": "DPI / USD / ETH",
-      "oracleLatestAnswer": 30058294136269516,
+      "oracleLatestAnswer": 27386629199045835,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0xa3953F07f389d719F99FC378ebDb9276177d8A6e",
@@ -282,7 +356,7 @@
       "oracle": "0xD6aA3D25116d8dA79Ea0246c4826EB951872e02e",
       "oracleDecimals": 18,
       "oracleDescription": "UNI / ETH",
-      "oracleLatestAnswer": 2539738600000000,
+      "oracleLatestAnswer": 2417249968950431,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0xD939F7430dC8D5a427f156dE1012A56C18AcB6Aa",
@@ -299,7 +373,7 @@
     },
     "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599": {
       "aToken": "0x9ff58f4fFB29fA2266Ab25e75e2A8b3503311656",
-      "aTokenImpl": "0x2e234DAe75C793f67A35089C9d99245E1C58470b",
+      "aTokenImpl": "0xA33eCc2125f6FD0b900945b149176D46f0474Ac4",
       "aTokenName": "ATOKEN_IMPL",
       "aTokenSymbol": "ATOKEN_IMPL",
       "baseStableBorrowRate": "30000000000000000000000000",
@@ -314,7 +388,7 @@
       "oracle": "0xFD858c8bC5ac5e10f01018bC78471bb0DC392247",
       "oracleDecimals": 18,
       "oracleDescription": "wBTC/BTC/ETH",
-      "oracleLatestAnswer": 28335167969185571079,
+      "oracleLatestAnswer": 26720411171326159186,
       "reserveFactor": 9000,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0x51B039b9AFE64B78758f8Ef091211b5387eA717c",
@@ -346,7 +420,7 @@
       "oracle": "0x3147D7203354Dc06D9fd350c7a2437bcA92387a4",
       "oracleDecimals": 18,
       "oracleDescription": "REN / ETH",
-      "oracleLatestAnswer": 2297325308356,
+      "oracleLatestAnswer": 2233271461656,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0x3356Ec1eFA75d9D150Da1EC7d944D9EDf73703B7",
@@ -378,7 +452,7 @@
       "oracle": "0x190be7269f53b4C3d8057b8c7a058A750ded1356",
       "oracleDecimals": 18,
       "oracleDescription": "Capped BUSD (fdUSD) / USD / ETH",
-      "oracleLatestAnswer": 233340330554396,
+      "oracleLatestAnswer": 232940838682440,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0x4A7A63909A72D268b1D8a93a9395d098688e0e5C",
@@ -410,7 +484,7 @@
       "oracle": "0xC9CbF687f43176B302F03f5e58470b77D07c61c6",
       "oracleDecimals": 18,
       "oracleDescription": "CVX / ETH",
-      "oracleLatestAnswer": 1043557567033555,
+      "oracleLatestAnswer": 936864979150760,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0xB01Eb1cE1Da06179136D561766fc2d609C5F55Eb",
@@ -442,7 +516,7 @@
       "oracle": "0xDC530D9457755926550b59e8ECcdaE7624181557",
       "oracleDecimals": 18,
       "oracleDescription": "LINK / ETH",
-      "oracleLatestAnswer": 5087722341198994,
+      "oracleLatestAnswer": 5803360000000000,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0xFB4AEc4Cc858F2539EBd3D37f2a43eAe5b15b98a",
@@ -474,7 +548,7 @@
       "oracle": "0xC3c79aa824373c793E60901428e11884BFeD83Ed",
       "oracleDecimals": 18,
       "oracleDescription": "Capped sUSD / USD / ETH",
-      "oracleLatestAnswer": 229819662954975,
+      "oracleLatestAnswer": 234038549388727,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0x30B0f7324feDF89d8eff397275F8983397eFe4af",
@@ -506,7 +580,7 @@
       "oracle": "0xd44d9a2E4643d55c1FA503C01a6cbB874a48Ae2E",
       "oracleDecimals": 18,
       "oracleDescription": "Capped LUSD / USD / ETH",
-      "oracleLatestAnswer": 234325923979222,
+      "oracleLatestAnswer": 233975091292413,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0x39f010127274b2dBdB770B45e1de54d974974526",
@@ -538,7 +612,7 @@
       "oracle": "0x53a7856Cb3092E9c7C2c50e05E5b24462B7B9698",
       "oracleDecimals": 18,
       "oracleDescription": "Capped DAI / USD / ETH",
-      "oracleLatestAnswer": 233809799819309,
+      "oracleLatestAnswer": 233374122815599,
       "reserveFactor": 7000,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0x778A13D3eeb110A4f7bb6529F99c000119a08E92",
@@ -570,7 +644,7 @@
       "oracle": "0x6Df09E975c830ECae5bd4eD9d90f3A95a4f88012",
       "oracleDecimals": 18,
       "oracleDescription": "AAVE / ETH",
-      "oracleLatestAnswer": 70405351305666430,
+      "oracleLatestAnswer": 67241679000000000,
       "reserveFactor": 0,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0x079D6a3E844BcECf5720478A718Edb6575362C5f",
@@ -602,7 +676,7 @@
       "oracle": "0xfD4A67F3c42CCA8ab4De6fba35dc11ffc87EE65e",
       "oracleDecimals": 18,
       "oracleDescription": "Capped FRAX / USD / ETH",
-      "oracleLatestAnswer": 233259733136058,
+      "oracleLatestAnswer": 233153762884090,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0x3916e3B6c84b161df1b2733dFfc9569a1dA710c2",
@@ -634,7 +708,7 @@
       "oracle": "0xF05D9B6C08757EAcb1fbec18e36A1B7566a13DEB",
       "oracleDecimals": 18,
       "oracleDescription": "Calculated XSUSHI / ETH",
-      "oracleLatestAnswer": 308486137607004,
+      "oracleLatestAnswer": 284550213980703,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0x73Bfb81D7dbA75C904f430eA8BAe82DB0D41187B",
@@ -666,7 +740,7 @@
       "oracle": "0x09e57964e9F314c61aA3614f9DdE037779Fc9ff1",
       "oracleDecimals": 18,
       "oracleDescription": "Capped USDP / USD / ETH",
-      "oracleLatestAnswer": 233894404779496,
+      "oracleLatestAnswer": 233410774008851,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0x2387119bc85A74e0BBcbe190d80676CB16F10D4F",
@@ -698,7 +772,7 @@
       "oracle": "0xac3AF0f4A52C577Cc2C241dF51a01FDe3D06D93B",
       "oracleDecimals": 18,
       "oracleDescription": "0.95/USD/ETH",
-      "oracleLatestAnswer": 222121630999388,
+      "oracleLatestAnswer": 221718247509803,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0xd89cF9E8A858F8B4b31Faf793505e112d6c17449",
@@ -730,7 +804,7 @@
       "oracle": "0x24551a8Fb2A7211A25a17B1481f043A8a8adC7f2",
       "oracleDecimals": 18,
       "oracleDescription": "MKR / ETH",
-      "oracleLatestAnswer": 485108382208483240,
+      "oracleLatestAnswer": 418669333377209850,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0xC01C8E4b12a89456a9fD4e4e75B72546Bf53f0B5",
@@ -762,7 +836,7 @@
       "oracle": "0x0B9a09cc52afc0d38ACcbd649aca1Da299d34454",
       "oracleDecimals": 18,
       "oracleDescription": "Capped USDC / USD / ETH",
-      "oracleLatestAnswer": 233774833198345,
+      "oracleLatestAnswer": 233366213308854,
       "reserveFactor": 7000,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0xE4922afAB0BbaDd8ab2a88E0C79d884Ad337fcA6",
@@ -794,7 +868,7 @@
       "oracle": "0x79291A9d692Df95334B1a0B3B4AE6bC606782f8c",
       "oracleDecimals": 18,
       "oracleDescription": "SNX / ETH",
-      "oracleLatestAnswer": 153813674924511,
+      "oracleLatestAnswer": 156955792230960,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0x8575c8ae70bDB71606A53AeA1c6789cB0fBF3166",
@@ -854,7 +928,7 @@
       "liquidationThreshold": 5,
       "ltv": 0,
       "oracle": "0xd4641b75015E6536E8102D98479568D05D7123Db",
-      "oracleLatestAnswer": 6713747411698468,
+      "oracleLatestAnswer": 5910488024198782,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0x34441FFD1948E49dC7a607882D0c38Efd0083815",
@@ -886,7 +960,7 @@
       "oracle": "0x492575FDD11a0fCf2C6C719867890a7648d526eB",
       "oracleDecimals": 18,
       "oracleDescription": "AMPL / ETH",
-      "oracleLatestAnswer": 281259530000000,
+      "oracleLatestAnswer": 266409794790963,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0x18152C9f77DAdc737006e9430dB913159645fa87",
@@ -918,7 +992,7 @@
       "oracle": "0x0606Be69451B1C9861Ac6b3626b99093b713E801",
       "oracleDecimals": 18,
       "oracleDescription": "FIL / ETH",
-      "oracleLatestAnswer": 597200000000000,
+      "oracleLatestAnswer": 568410317515626,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0xcAad05C49E14075077915cB5C820EB3245aFb950",
@@ -950,7 +1024,7 @@
       "oracle": "0x8a12Be339B0cD1829b91Adc01977caa5E9ac121e",
       "oracleDecimals": 18,
       "oracleDescription": "CRV / ETH",
-      "oracleLatestAnswer": 230111521544628,
+      "oracleLatestAnswer": 201517928866622,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0x9288059a74f589C919c7Cf1Db433251CdFEB874B",
@@ -982,7 +1056,7 @@
       "oracle": "0x2Da4983a622a8498bb1a21FaE9D8F6C664939962",
       "oracleDecimals": 18,
       "oracleDescription": "ZRX / ETH",
-      "oracleLatestAnswer": 60050561383564,
+      "oracleLatestAnswer": 56910630183822,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0x071B4323a24E73A5afeEbe34118Cd21B8FAAF7C3",
@@ -1014,7 +1088,7 @@
       "oracle": "0x24D9aB51950F3d62E9144fdC2f3135DAA6Ce8D1B",
       "oracleDecimals": 18,
       "oracleDescription": "ENJ / ETH",
-      "oracleLatestAnswer": 16930534214989,
+      "oracleLatestAnswer": 15965691494934,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0x943DcCA156b5312Aa24c1a08769D67FEce4ac14C",
@@ -1046,7 +1120,7 @@
       "oracle": "0x774a7BC8b395A3F9879197D21cF6e7c6a2639937",
       "oracleDecimals": 18,
       "oracleDescription": "Capped UST / USD / ETH",
-      "oracleLatestAnswer": 3305408357758,
+      "oracleLatestAnswer": 3064568612193,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0x7FDbfB0412700D94403c42cA3CAEeeA183F07B26",
@@ -1110,7 +1184,7 @@
       "oracle": "0xC1438AA3823A6Ba0C159CfA8D98dF5A994bA120b",
       "oracleDecimals": 18,
       "oracleDescription": "BAL / ETH",
-      "oracleLatestAnswer": 325659271378245,
+      "oracleLatestAnswer": 300293986013366,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0xe569d31590307d05DA3812964F1eDd551D665a0b",
@@ -1142,7 +1216,7 @@
       "oracle": "0xCB45B5c861a6468145b1720A620C38f55f736B74",
       "oracleDecimals": 18,
       "oracleDescription": "Capped USDT / USD / ETH",
-      "oracleLatestAnswer": 233772209824977,
+      "oracleLatestAnswer": 233508414057302,
       "reserveFactor": 7000,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0xe91D55AB2240594855aBd11b3faAE801Fd4c4687",
@@ -1174,7 +1248,7 @@
       "oracle": "0x656c0544eF4C98A6a98491833A89204Abb045d6b",
       "oracleDecimals": 18,
       "oracleDescription": "KNC / ETH",
-      "oracleLatestAnswer": 100818382053425,
+      "oracleLatestAnswer": 91560997567878,
       "reserveFactor": 9999,
       "stableBorrowRateEnabled": false,
       "stableDebtToken": "0x9915dfb872778B2890a117DA1F35F335eb06B54f",

@@ -1,0 +1,29 @@
+diff --git a/tmp/1_0xC2fcab14Ec1F2dFA82a23C639c4770345085a50F_flat/AToken.sol b/tmp/1_0xA33eCc2125f6FD0b900945b149176D46f0474Ac4_flat/AToken.sol
+index 14b79a7..f8f0267 100644
+--- a/tmp/1_0xC2fcab14Ec1F2dFA82a23C639c4770345085a50F_flat/AToken.sol
++++ b/tmp/1_0xA33eCc2125f6FD0b900945b149176D46f0474Ac4_flat/AToken.sol
+@@ -27,9 +27,11 @@ contract AToken is VersionedInitializable, IncentivizedERC20, IAToken {
+         keccak256("Permit(address owner,address spender,uint256 value,uint256 nonce,uint256 deadline)");
+ 
+     uint256 public constant UINT_MAX_VALUE = uint256(-1);
+-    uint256 public constant ATOKEN_REVISION = 0x2;
++    uint256 public constant ATOKEN_REVISION = 0x3;
+     address public immutable UNDERLYING_ASSET_ADDRESS;
+     address public immutable RESERVE_TREASURY_ADDRESS;
++    uint256 internal constant RELEASE_MARGIN = 10;
++
+     ILendingPool public immutable POOL;
+ 
+     /// @dev owner => next valid nonce to submit with permit()
+@@ -109,7 +111,10 @@ contract AToken is VersionedInitializable, IncentivizedERC20, IAToken {
+         require(amountScaled != 0, Errors.CT_INVALID_BURN_AMOUNT);
+         _burn(user, amountScaled);
+ 
+-        IERC20(UNDERLYING_ASSET_ADDRESS).safeTransfer(receiverOfUnderlying, amount);
++        uint256 releaseAmount = amount > RELEASE_MARGIN ? amount - RELEASE_MARGIN : 0;
++        if (releaseAmount != 0) {
++            IERC20(UNDERLYING_ASSET_ADDRESS).safeTransfer(receiverOfUnderlying, releaseAmount);
++        }
+ 
+         emit Transfer(user, address(0), amount);
+         emit Burn(user, receiverOfUnderlying, amount, index);

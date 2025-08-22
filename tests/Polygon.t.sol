@@ -5,8 +5,9 @@ import {AaveV2Polygon, AaveV2PolygonAssets} from 'aave-address-book/AaveV2Polygo
 import {DeployLib} from '../scripts/Deploy.s.sol';
 
 import {DefaultTest} from './DefaultTest.t.sol';
+import {Deployments} from '../src/Deployments.sol';
 
-contract PolygonTest is DefaultTest('polygon', '', 75075521) {
+contract PolygonTest is DefaultTest('polygon', '', 75350631) {
   constructor() {
     poolAddressesProvider = AaveV2Polygon.POOL_ADDRESSES_PROVIDER;
     supplyAsset = AaveV2PolygonAssets.USDT_UNDERLYING;
@@ -14,6 +15,6 @@ contract PolygonTest is DefaultTest('polygon', '', 75075521) {
   }
 
   function _deployPayload() internal override returns (address) {
-    return DeployLib.deployPolygon(vm);
+    return Deployments.POLYGON;
   }
 }
